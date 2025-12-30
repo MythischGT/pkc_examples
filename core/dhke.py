@@ -1,5 +1,4 @@
 from core.field import FiniteField
-import random
 
 
 class DHKE:
@@ -26,14 +25,12 @@ class DHKE:
         self.g = DHKE._generator_cache
 
     def generate_private_key(self) -> int:
-        """Generate a private exponent such that g^exponent lies in subgroup of order q.
+        """Generate a private key derived from the finite field.
 
-        For a safe-prime p with q = (p-1)/2 and primitive root g, the subgroup
-        of order q consists of even exponents of g (i.e. g^{2k}). Return an
-        even exponent in the range [2, p-2].
+        Uses the field's `random_element()` to ensure the private key is a
+        valid field element and consistent with the field implementation.
         """
-        # choose k in [1, q-1] and return exponent = 2*k
-        return 2 * random.randint(1, self.q - 1)
+        return self.field.random_element()
 
     def generate_public_key(self, secret: int) -> int:
         """Compute public key from private key: public_key = g^secret mod p.

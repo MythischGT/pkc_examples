@@ -38,7 +38,7 @@ def spawn_terminal(title, script_path):
                 f"Start-Process powershell "
                 f"-ArgumentList '-NoExit', "
                 f"'-Command', "
-                f"\"$Host.UI.RawUI.WindowTitle='{title}'; "
+                f"\"$Host.UI.RawUI.WindowTitle=\'{title}\'; "
                 f"cd '{BASE_DIR}'; "
                 f"& '{PYTHON}' -m 'participants.{script_path}'\""
             )
@@ -48,16 +48,16 @@ def spawn_terminal(title, script_path):
         raise RuntimeError("Unsupported OS")
 
 def main():
-    print("[*] Starting Obo...")
-    spawn_terminal("Obo", "obo")
+    print("[*] Starting Bob...")
+    spawn_terminal("Bob", "bob")
     time.sleep(1.5)
 
-    print("[*] Starting Korno...")
-    spawn_terminal("Korno", "korno")
+    print("[*] Starting Eve...")
+    spawn_terminal("Eve", "eve")
     time.sleep(1.5)
 
-    print("[*] Starting Jacob...")
-    spawn_terminal("Jacob", "jacob")
+    print("[*] Starting Alice...")
+    spawn_terminal("Alice", "alice")
     print("[*] All parties launched.")
 
 if __name__ == "__main__":
